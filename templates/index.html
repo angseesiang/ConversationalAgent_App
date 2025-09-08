@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversational Agent</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 50px auto; text-align: center; }
+        .chat-box { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 20px; }
+        .input-box { width: 100%; padding: 10px; margin-bottom: 10px; }
+        .submit-button { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conversational Agent</h1>
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" class="input-box" id="user-input" placeholder="Type your message here...">
+        <button class="submit-button" onclick="sendMessage()">Send</button>
+    </div>
+</body>
+<script>
+function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userInput }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        var chatBox = document.getElementById("chat-box");
+        chatBox.innerHTML += "<p><strong>You:</strong> " + userInput + "</p>";
+        chatBox.innerHTML += "<p><strong>Bot:</strong> " + data.response + "</p>";
+        document.getElementById("user-input").value = "";
+    });
+}
+</script>
+</html>
+
