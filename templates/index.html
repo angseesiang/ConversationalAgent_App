@@ -17,25 +17,25 @@
         <input type="text" class="input-box" id="user-input" placeholder="Type your message here...">
         <button class="submit-button" onclick="sendMessage()">Send</button>
     </div>
-</body>
-<script>
-function sendMessage() {
-    var userInput = document.getElementById("user-input").value;
-    fetch('/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: userInput }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        var chatBox = document.getElementById("chat-box");
-        chatBox.innerHTML += "<p><strong>You:</strong> " + userInput + "</p>";
-        chatBox.innerHTML += "<p><strong>Bot:</strong> " + data.response + "</p>";
-        document.getElementById("user-input").value = "";
-    });
-}
-</script>
-</html>
 
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                var chatBox = document.getElementById("chat-box");
+                chatBox.innerHTML += "<p><strong>You:</strong> " + userInput + "</p>";
+                chatBox.innerHTML += "<p><strong>Bot:</strong> " + data.response + "</p>";
+                document.getElementById("user-input").value = '';
+            });
+        }
+    </script>
+</body>
+</html>

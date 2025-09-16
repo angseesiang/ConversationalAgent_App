@@ -5,6 +5,11 @@ class DataPreprocessor:
 
     def load_data(self, filepath: str) -> pd.DataFrame:
         """
+        Load data from a CSV file.
+
+        Args:
+            filepath (str): Path to the data file.
+
         Returns:
             pd.DataFrame: Loaded data.
         """
@@ -21,9 +26,7 @@ class DataPreprocessor:
         Returns:
             pd.DataFrame: Preprocessed data.
         """
-
         # Example preprocessing steps
         data = data.dropna()  # Remove missing values
         data['text'] = data['text'].str.lower()  # Convert text to lowercase
         return data
-

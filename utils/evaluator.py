@@ -17,7 +17,7 @@ class Evaluator:
         """
         y_true = test_data['true_labels']
         y_pred = test_data['predicted_labels']
-
+        
         metrics = {
             "accuracy": accuracy_score(y_true, y_pred),
             "precision": precision_score(y_true, y_pred, average='weighted'),
@@ -25,4 +25,3 @@ class Evaluator:
             "f1_score": f1_score(y_true, y_pred, average='weighted')
         }
         return metrics
-
